@@ -190,7 +190,12 @@ export default function Home() {
             previsível.
           </p>
         </div>
-        <a className="primary-button final" href="mailto:contato@avexads.com.br?subject=Diagnóstico%20AVEX">
+        <a
+          className="primary-button final"
+          href="https://www.instagram.com/avex.ads/"
+          target="_blank"
+          rel="noreferrer"
+        >
           Falar com a equipe AVEX
         </a>
       </section>
