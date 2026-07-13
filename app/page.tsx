@@ -1,3 +1,6 @@
+import SiteHeader from "./components/SiteHeader";
+import { WHATSAPP_LINK } from "./lib/whatsapp";
+
 const differentials = [
   {
     title: "Diagnóstico gratuito",
@@ -22,14 +25,71 @@ const audience = [
   'Quer usar anúncios e conteúdo de forma mais estratégica, não só "postar por postar"',
 ];
 
-const solutions = [
-  "Planejamento de conteúdo e calendário de publicações",
-  "Copywriting e roteiros para vídeos",
-  "Gestão de anúncios no Meta Ads e Google Ads",
-  "Landing pages e formulários de qualificação",
-  "Implantação de CRM e scripts de atendimento/follow-up",
-  "Diagnóstico estratégico e consultoria comercial",
-  "Soluções com inteligência artificial e automações",
+// Resumo das 3 categorias detalhadas em /servicos (conteúdo completo em
+// servicos-avex-landing-page.md). Aqui fica só o essencial + destaques;
+// a lista completa de ~50 itens vive na página dedicada.
+const solutionCategories = [
+  {
+    id: "producao-de-conteudo",
+    title: "Produção de Conteúdo",
+    text: "autoridade para sua marca, serviço ou imagem profissional",
+    highlights: [
+      "Planejamento e calendário de publicações",
+      "Copywriting e roteiros para vídeos",
+      "Design, carrosséis, gravação e edição",
+    ],
+  },
+  {
+    id: "geracao-de-demanda",
+    title: "Geração de Demanda",
+    text: "estratégias para gerar contatos, conversões e vendas",
+    highlights: [
+      "Gestão de anúncios no Meta Ads e Google Ads",
+      "Landing pages e formulários de qualificação",
+      "CRM, scripts de atendimento e follow-up",
+    ],
+  },
+  {
+    id: "solucoes-para-o-seu-negocio",
+    title: "Soluções para o seu Negócio",
+    text: "serviços avulsos para resolver necessidades específicas",
+    highlights: [
+      "Diagnóstico estratégico e consultoria comercial",
+      "Sites, landing pages e Google Business Profile",
+      "Automações e soluções com inteligência artificial",
+    ],
+  },
+];
+
+// Itens abaixo refletem o processo real documentado no SOP interno da AVEX
+// (pipeline de CRM, SLA de resposta, regra de não prometer resultado, plano
+// de execução em fases). É verificável e não depende de caso de sucesso
+// publicado — por isso substitui uma seção de "números" que ainda não temos.
+const methodPoints = [
+  {
+    title: "Diagnóstico antes de qualquer campanha",
+    text: "nenhuma campanha começa sem briefing aprovado, acessos configurados e oferta validada",
+  },
+  {
+    title: "Resposta rápida a cada lead",
+    text: "novos contatos são registrados e respondidos em até 15 minutos em horário comercial",
+  },
+  {
+    title: "Cada cliente tem acompanhamento próprio",
+    text: "cadastro individual no CRM, com pipeline, prazos e responsáveis definidos etapa por etapa",
+  },
+  {
+    title: "Execução em fases, com decisão por dado",
+    text: "plano de 30 dias dividido em estrutura, teste, corte do que não funciona e otimização",
+  },
+  {
+    title: "Relatório e reunião todo mês",
+    text: "resultados, aprendizados e plano do próximo ciclo — sempre revisados com você, não só informados",
+  },
+  {
+    title: "Método, não promessa",
+    text: "vendemos processo, teste e acompanhamento baseado em dados — nunca garantia de resultado",
+  },
 ];
 
 const leftNotifications = [
@@ -50,12 +110,7 @@ export default function Home() {
       <section className="hero" id="inicio" aria-labelledby="hero-title">
         <div className="hero-media" aria-hidden="true">
           <div className="wood-panel" />
-          <div className="founder-visual">
-            <div className="portrait-glow" />
-            <div className="portrait-head" />
-            <div className="portrait-body" />
-            <div className="portrait-hands" />
-          </div>
+          <div className="hero-glow" />
           <div className="notification-stack stack-left">
             {leftNotifications.map((item, index) => (
               <div className="notify-card" key={`${item}-${index}`}>
@@ -80,16 +135,7 @@ export default function Home() {
           </div>
         </div>
 
-        <header className="site-header" aria-label="Navegação principal">
-          <a className="brand" href="#inicio" aria-label="AVEX Ads">
-            <img src="/assets/brand/logo-inverted.png" alt="AVEX" />
-          </a>
-          <nav className="top-nav">
-            <a href="#para-quem">Ads</a>
-            <a href="#solucoes">Growth</a>
-            <a href="#diagnostico">Performance</a>
-          </nav>
-        </header>
+        <SiteHeader />
 
         <div className="hero-brand">
           <img src="/assets/brand/logo-inverted.png" alt="AVEX" />
@@ -109,10 +155,15 @@ export default function Home() {
               anúncios e processo comercial para transformar visibilidade em
               vendas reais.
             </p>
-            <a className="primary-button" href="#diagnostico">
+            <a
+              className="primary-button"
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noreferrer"
+            >
               Quero estruturar minhas vendas agora!
             </a>
-            <span>Clique no botão acima e fale com a nossa equipe.</span>
+            <span>Clique no botão acima e fale com a nossa equipe no WhatsApp.</span>
           </div>
         </div>
       </section>
@@ -125,6 +176,26 @@ export default function Home() {
             <p>{item.text}</p>
           </article>
         ))}
+      </section>
+
+      <section className="method-section" aria-labelledby="method-title">
+        <div className="section-heading center">
+          <h2 id="method-title">
+            Como a AVEX <strong>trabalha, na prática</strong>
+          </h2>
+          <p>
+            Sem caso publicado ainda? Sem problema — isso aqui é o nosso
+            processo real, o mesmo que roda por trás de cada cliente.
+          </p>
+        </div>
+        <div className="method-grid">
+          {methodPoints.map((item) => (
+            <article className="method-card" key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="audience-section" id="para-quem">
@@ -141,7 +212,7 @@ export default function Home() {
             </article>
           ))}
         </div>
-        <a className="primary-button middle" href="#diagnostico">
+        <a className="primary-button middle" href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
           Quero estruturar minhas vendas agora!
         </a>
       </section>
@@ -158,12 +229,18 @@ export default function Home() {
         </div>
 
         <div className="solutions-layout">
-          <div className="checklist-panel">
-            {solutions.map((item) => (
-              <div className="check-item" key={item}>
-                <span>✓</span>
-                <p>{item}</p>
-              </div>
+          <div className="category-grid">
+            {solutionCategories.map((category) => (
+              <article className="category-card" key={category.id}>
+                <h3>{category.title}</h3>
+                <p className="category-text">{category.text}</p>
+                <ul>
+                  {category.highlights.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <a href={`/servicos#${category.id}`}>Ver tudo dessa frente →</a>
+              </article>
             ))}
           </div>
           <aside className="highlight-panel">
@@ -176,6 +253,10 @@ export default function Home() {
             </p>
           </aside>
         </div>
+
+        <a className="secondary-link" href="/servicos">
+          Ver a lista completa de serviços →
+        </a>
       </section>
 
       <section className="diagnostic-section" id="diagnostico">
@@ -192,7 +273,7 @@ export default function Home() {
         </div>
         <a
           className="primary-button final"
-          href="https://www.instagram.com/avex.ads/"
+          href={WHATSAPP_LINK}
           target="_blank"
           rel="noreferrer"
         >
